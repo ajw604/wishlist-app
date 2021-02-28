@@ -1,32 +1,81 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {addItem, deleteItem} from './redux/actions';
-import {GlobalStyle, Form, Input, Container, ListView} from './styled-components';
+import {GlobalStyle, Form, Input, P, Button, Container, ListView} from './styled-components';
 
 function App() {
+  //Form for adding to wishlist
+  const AddForm = props => {
+    const [input, setInput] = useState('');
+    
+    const handleChange = e => {
+      e.preventDefault();
+      setInput(e.target.value)
+    }
+
+    const handleSubmit = e => {
+      e.preventDefault();
+
+      props.onSubmit({
+        word: input,
+      });
+      setInput('');
+    }
+
+    return (
+      <>
+        <Form onSubmit={handleSubmit}>
+          <Input value={input} onChange={handleChange}/>
+          <Button>Add</Button>
+        </Form>
+      </>
+    )
+  }
+
+  //A single removeable word on the wishlist
+  const Word = props => {
+    return (
+      <>
+        <P href='#' onClick={() => props.deleteWord(props.word)}>{props.word}</P>
+        
+      </>
+  );
+  }
+
+  //Retrieve state and dispatch actions using redux hooks
   const wishList = useSelector(state => state.wishList);
   const dispatch = useDispatch();
-
-  const handleAdd = e => {
-aaaaaa
+  const addWord = add => {
+    var word = add.word;
+    if (word === "") {
+      return;
+    }
+    for (let wish of wishList) {
+      if (wish === word) {
+        return;
+      }
+    }
+    dispatch(addItem(word));
   }
-  
+  const deleteWord = word => {
+    dispatch(deleteItem(word))
+  }
+
+  //Create topdown list of removable words
+  const mapList = () => {
+    return wishList.map((word, index) => {
+      return <Word word={word} deleteWord={deleteWord} key={index}>{word}</Word>;
+    });
+  }
   return (
     <>
       <GlobalStyle />
       <Container>
       <h2>MY WISHLIST</h2>
       <ListView>
-        List : {wishList}
+        {mapList()}
       </ListView>
-        <Form onSubmit={handleAdd}>
-          <Input>
-
-          </Input>
-
-        </Form>
-        
-        
+        <AddForm onSubmit={addWord}/>
       </Container>
     </>
     );

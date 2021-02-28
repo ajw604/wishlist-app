@@ -21,6 +21,19 @@ export const Input = styled.input.attrs(props => ({
     margin: 1em auto;
   `;
 
+export const P = styled.p`
+  font-size: 20px;
+  margin: 0;
+  :hover {
+    cursor: pointer
+  }
+`;
+export const Button = styled.button`
+  background: greenyellow;
+  font-size: 25px;
+  margin: 1em auto;
+`;
+
 export const Container = styled.div`
   background: lightpink;
   width: 400px;
@@ -39,5 +52,5 @@ export const ListView = styled.div`
   border: 1px solid black;
   text-align: left;
   margin: 1em auto;
-  padding: 1em;
+  padding: 15px;
 `;
