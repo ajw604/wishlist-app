@@ -4,7 +4,7 @@ import {addItem, deleteItem} from './redux/actions';
 import {GlobalStyle, Form, Input, P, Button, Container, ListView} from './styled-components';
 
 function App() {
-  //Form for adding to wishlist
+  //Form for adding to the wish list
   const AddForm = props => {
     const [input, setInput] = useState('');
     
@@ -32,7 +32,7 @@ function App() {
     )
   }
 
-  //A single removeable word on the wishlist
+  //A single removeable word on the wish list
   const Word = props => {
     return (
       <>
@@ -69,6 +69,7 @@ function App() {
   }
 
   const submitList = () => {
+    alert("Wish list submitted to Santa!");
     for (let i = 0; i < wishList.length; i++) {
       deleteWord(wishList[i]);
     }
@@ -83,7 +84,7 @@ function App() {
         {mapList()}
       </ListView>
       <AddForm onSubmit={addWord}/>
-      <Button width={"312px"}onClick={() => submitList()}>Submit</Button>
+      <Button width={"312px"} onClick={() => submitList()}>Submit</Button>
       </Container>
     </>
     );
