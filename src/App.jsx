@@ -26,7 +26,7 @@ function App() {
       <>
         <Form onSubmit={handleSubmit}>
           <Input value={input} onChange={handleChange}/>
-          <Button>Add</Button>
+          <Button width={"125px"}>Add</Button>
         </Form>
       </>
     )
@@ -37,9 +37,16 @@ function App() {
     return (
       <>
         <P href='#' onClick={() => props.deleteWord(props.word)}>{props.word}</P>
-        
+        <br/>
       </>
-  );
+    );
+  }
+
+  //Create topdown list of removable words
+  const mapList = () => {
+    return wishList.map((word, index) => {
+      return <Word word={word} deleteWord={deleteWord} key={index}>{word}</Word>;
+    });
   }
 
   //Retrieve state and dispatch actions using redux hooks
@@ -61,12 +68,12 @@ function App() {
     dispatch(deleteItem(word))
   }
 
-  //Create topdown list of removable words
-  const mapList = () => {
-    return wishList.map((word, index) => {
-      return <Word word={word} deleteWord={deleteWord} key={index}>{word}</Word>;
-    });
+  const submitList = () => {
+    for (let i = 0; i < wishList.length; i++) {
+      deleteWord(wishList[i]);
+    }
   }
+  
   return (
     <>
       <GlobalStyle />
@@ -75,7 +82,8 @@ function App() {
       <ListView>
         {mapList()}
       </ListView>
-        <AddForm onSubmit={addWord}/>
+      <AddForm onSubmit={addWord}/>
+      <Button width={"312px"}onClick={() => submitList()}>Submit</Button>
       </Container>
     </>
     );

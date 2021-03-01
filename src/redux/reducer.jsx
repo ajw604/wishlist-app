@@ -16,9 +16,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         wishList: newList,
       };
     case DELETE_ITEM:
-      console.log(typeof(state.wishList[0]))
       newList = state.wishList.filter((value, index, array) => {
-        console.log(value);
         return value !== (action.payload);
       });
       return {

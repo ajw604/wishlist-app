@@ -13,12 +13,16 @@ export const Form = styled.form`
 export const Input = styled.input.attrs(props => ({
     type: 'text'
   }))`
-    width: 312px;
+    width: 310px;
     border-radius: 5px;
     border: 1px solid black;
     display: block;
     font-size: 25px;
-    margin: 1em auto;
+    margin: 0.75em auto;
+
+    :focus {
+      outline-color: lightblue;
+    }
   `;
 
 export const P = styled.p`
@@ -29,9 +33,18 @@ export const P = styled.p`
   }
 `;
 export const Button = styled.button`
-  background: greenyellow;
-  font-size: 25px;
-  margin: 1em auto;
+  width: ${props => props.width};
+  background: lightgreen;
+  border: 1px solid;
+  border-radius: 3px;
+  font-size: 15px;
+  font-weight: bold;
+  margin: auto;
+  padding: 12px;
+
+  :hover {
+    cursor: pointer
+  }
 `;
 
 export const Container = styled.div`
