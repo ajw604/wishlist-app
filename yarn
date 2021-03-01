@@ -1,0 +1,12 @@
+
+> fsevents@1.2.12 install /Users/ajw604/haloapp/developer-test/node_modules/fsevents
+> node-gyp rebuild
+
++ -@0.0.1
+updated 1 package and audited 1966 packages in 8.599s
+
+67 packages are looking for funding
+  run `npm fund` for details
+
+found 102 vulnerabilities (100 low, 2 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
