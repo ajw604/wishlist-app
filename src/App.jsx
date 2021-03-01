@@ -69,6 +69,9 @@ function App() {
   }
 
   const submitList = () => {
+    if (wishList.length === 0) {
+      return;
+    }
     alert("Wish list submitted to Santa!");
     for (let i = 0; i < wishList.length; i++) {
       deleteWord(wishList[i]);

@@ -45,6 +45,9 @@ export const Button = styled.button`
   :hover {
     cursor: pointer
   }
+  :focus {
+    outline:none;
+  }
 `;
 
 export const Container = styled.div`
